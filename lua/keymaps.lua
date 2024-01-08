@@ -18,6 +18,9 @@ vim.api.nvim_set_keymap("n", "<tab>", ":tabn<CR>", { noremap = true })
 -- move current tab to next position
 -- vim.api.nvim_set_keymap("n", "<leader>tmn", ":+tabmove<CR>", { noremap = true })
 
+-- Window navigation keymaps
+vim.api.nvim_set_keymap('n', '<cr>', '<C-w>w', { noremap = true })
+
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
