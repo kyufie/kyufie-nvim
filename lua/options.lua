@@ -35,4 +35,7 @@ vim.o.timeoutlen = 300
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+-- Exrc support
+vim.o.exrc = true;
+
 -- vim: ts=2 sts=2 sw=2 et
