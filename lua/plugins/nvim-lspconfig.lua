@@ -1,8 +1,8 @@
 local M = { 'neovim/nvim-lspconfig' }
 
--- Configurable
 -- NOTE: Most mason LSPs aren't compatible with Termux
-local use_mason = false
+--       Change this to false whenever necessary
+local use_mason = true
 local servers = {
   clangd = {},
   lua_ls = {
@@ -17,7 +17,6 @@ local servers = {
 
 M.dependencies = {
   -- Automatically install LSPs to stdpath for neovim
-  { 'williamboman/mason.nvim', config = true },
   'williamboman/mason-lspconfig.nvim',
   -- Useful status updates for LSP
   -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -28,6 +27,10 @@ M.dependencies = {
   'folke/which-key.nvim',
   'nvim-telescope/telescope.nvim'
 }
+
+if use_mason then
+  table.insert(M.dependencies, { 'williamboman/mason.nvim', config = true })
+end
 
 M.config = function()
   -- [[ Configure LSP ]]
