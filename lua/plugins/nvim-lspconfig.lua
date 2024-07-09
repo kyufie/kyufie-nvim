@@ -1,8 +1,7 @@
 local M = { 'neovim/nvim-lspconfig' }
 
 -- NOTE: Most mason LSPs aren't compatible with Termux
---       Change this to false whenever necessary
-local use_mason = true
+local use_mason = not vim.fn.has_key(vim.fn.environ(), 'TERMUX_VERSION')
 local servers = {
   clangd = {},
   lua_ls = {
