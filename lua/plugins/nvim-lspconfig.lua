@@ -1,7 +1,7 @@
 local M = { 'neovim/nvim-lspconfig' }
 
 -- NOTE: Most mason LSPs aren't compatible with Termux
-local use_mason = not vim.fn.has_key(vim.fn.environ(), 'TERMUX_VERSION')
+local use_mason = false
 local servers = {
   clangd = {},
   lua_ls = {
@@ -12,6 +12,7 @@ local servers = {
       -- diagnostics = { disable = { 'missing-fields' } },
     },
   },
+  nixd = {},
 }
 
 M.dependencies = {
@@ -81,6 +82,21 @@ M.config = function()
         key = '<leader>lS',
         func = t_builtin.lsp_workspace_symbols,
         desc = '[S]ymbols (workspace)'
+      },
+      {
+        key = '<leader>lci',
+        func = t_builtin.lsp_incoming_calls,
+        desc = '[I]ncoming [C]alls (cursor)'
+      },
+      {
+        key = '<leader>lco',
+        func = t_builtin.lsp_outgoing_calls,
+        desc = '[O]utgoing [C]alls (cursor)'
+      },
+      {
+        key = '<leader>l<space>',
+        func = function(t) t_builtin.diagnostics(t, 0) end,
+        desc = '[D]iagnostics (buffer)'
       },
       -- See `:help K` for why this keymap
       {
