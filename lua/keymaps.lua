@@ -11,7 +11,7 @@ vim.keymap.set('n', '<esc>', ':noh<cr>', { desc = 'Clear highlight' })
 vim.api.nvim_set_keymap("n", "<leader>n", ":$tabnew<CR>", { noremap = true, desc = 'New tab' })
 vim.api.nvim_set_keymap("n", "<leader>x", ":q<CR>", { noremap = true, desc = 'Close current window' })
 vim.api.nvim_set_keymap("n", "<tab>", ":tabn<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<S-tab>", ":tabn<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<S-tab>", ":tabp<CR>", { noremap = true })
 -- vim.api.nvim_set_keymap("n", "<leader>o", ":tabonly<CR>", { noremap = true, desc = 'Use current tab as only tab' })
 -- vim.api.nvim_set_keymap("n", "<leader>tp", ":tabp<CR>", { noremap = true })
 -- move current tab to previous position
