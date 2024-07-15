@@ -4,19 +4,24 @@
 -- Set highlight on search
 vim.o.hlsearch = true
 
+-- Enable line number
 vim.o.number = true
+-- Enable relative line number for quick navigation
 vim.o.relativenumber = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
 -- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
 vim.o.clipboard = 'unnamedplus'
 
--- Enable break indent
+-- Enable break indent (keep indentation for wrapped lines)
 vim.o.breakindent = true
+
+-- Indentation
+vim.o.shiftwidth = 4
+-- Use space instead of tab for indentation
+vim.o.expandtab = true
 
 -- Save undo history
 vim.o.undofile = true
