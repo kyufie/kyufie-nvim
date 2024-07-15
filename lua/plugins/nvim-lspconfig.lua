@@ -80,7 +80,7 @@ M.config = function()
       },
       {
         key = '<leader>lS',
-        func = t_builtin.lsp_workspace_symbols,
+        func = t_builtin.lsp_dynamic_workspace_symbols,
         desc = '[S]ymbols (workspace)'
       },
       {
