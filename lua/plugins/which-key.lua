@@ -2,20 +2,26 @@ local M = { 'folke/which-key.nvim' }
 
 M.config = function()
   -- document existing key chains
-  require('which-key').register {
-    ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-    ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
-    ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-    ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
-    ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-    ['<leader>l'] = { name = '[L]SP', _ = 'which_key_ignore' },
+  require('which-key').add {
+    { "<leader>g", group = "[G]it" },
+    { "<leader>g_", hidden = true },
+    { "<leader>h", group = "Git [H]unk" },
+    { "<leader>h_", hidden = true },
+    { "<leader>l", group = "[L]SP" },
+    { "<leader>l_", hidden = true },
+    { "<leader>s", group = "[S]earch" },
+    { "<leader>s_", hidden = true },
+    { "<leader>t", group = "[T]oggle" },
+    { "<leader>t_", hidden = true },
+    { "<leader>w", group = "[W]orkspace" },
+    { "<leader>w_", hidden = true },
   }
   -- register which-key VISUAL mode
   -- required for visual <leader>hs (hunk stage) to work
-  require('which-key').register({
-    ['<leader>'] = { name = 'VISUAL <leader>' },
-    ['<leader>h'] = { 'Git [H]unk' },
-  }, { mode = 'v' })
+  require('which-key').add {
+    { "<leader>", group = "VISUAL <leader>", mode = "v" },
+    { "<leader>h", desc = "Git [H]unk", mode = "v" },
+  }
 end
 
 return M
