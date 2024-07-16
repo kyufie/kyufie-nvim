@@ -8,28 +8,22 @@ local servers = {
     Lua = {
       workspace = { checkThirdParty = true },
       telemetry = { enable = false },
-      -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-      -- diagnostics = { disable = { 'missing-fields' } },
     },
   },
   nixd = {},
 }
 
 M.dependencies = {
-  -- Automatically install LSPs to stdpath for neovim
-  'williamboman/mason-lspconfig.nvim',
-  -- Useful status updates for LSP
-  -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
   { 'j-hui/fidget.nvim', opts = {} },
-  -- Additional lua configuration, makes nvim stuff amazing!
-  'folke/neodev.nvim',
+  { 'folke/lazydev.nvim', opts = {} },
   'hrsh7th/nvim-cmp',
-  'folke/which-key.nvim',
-  'nvim-telescope/telescope.nvim'
+  'nvim-telescope/telescope.nvim',
+  'nvimdev/lspsaga.nvim'
 }
 
 if use_mason then
-  table.insert(M.dependencies, { 'williamboman/mason.nvim', config = true })
+  table.insert(M.dependencies, 'williamboman/mason.nvim')
+  table.insert(M.dependencies, 'williamboman/mason-lspconfig.nvim')
 end
 
 M.config = function()
@@ -39,39 +33,36 @@ M.config = function()
     local t_builtin = require('telescope.builtin')
     local keybinds = {
       {
-        key = '<leader>lR',
-        func = vim.lsp.buf.rename,
-        desc = '[R]ename (global)'
+        key = 'gr',
+        func = '<cmd>Lspsaga finder ref<CR>',
+        desc = '[G]oto [R]eference'
       },
       {
-        key = '<leader>lr',
-        func = t_builtin.lsp_references,
-        desc = '[R]eferences (global)'
+        -- Overrides default keymap
+        key = 'gi',
+        func = '<cmd>Lspsaga finder imp<CR>',
+        desc = '[G]oto [I]mplementation'
       },
+      {
+        key = 'gd',
+        func = '<cmd>Lspsaga finder def<CR>',
+        desc = '[G]oto [D]efinition'
+      },
+      {
+        key = 'gD',
+        func = '<cmd>Lspsaga diagnostic_jump_next<CR>',
+        desc = '[G]oto next [D]iagnostic'
+      },
+
       {
         key = '<leader>la',
-        func = vim.lsp.buf.code_action,
+        func = '<cmd>Lspsaga code_action<CR>',
         desc = 'Code [A]ction'
       },
       {
-        key = '<leader>li',
-        func = t_builtin.lsp_implementations,
-        desc = '[I]mplementation'
-      },
-      {
-        key = '<leader>lD',
-        func = vim.lsp.buf.declaration,
-        desc = '[D]eclaration (cursor)'
-      },
-      {
-        key = '<leader>ld',
-        func = t_builtin.lsp_definitions,
-        desc = '[D]efinition (cursor)'
-      },
-      {
-        key = '<leader>lt',
-        func = t_builtin.lsp_type_definitions,
-        desc = '[T]ype Definition'
+        key = '<leader>lr',
+        func = '<cmd>Lspsaga rename<CR>',
+        desc = '[R]ename'
       },
       {
         key = '<leader>ls',
@@ -85,23 +76,23 @@ M.config = function()
       },
       {
         key = '<leader>lci',
-        func = t_builtin.lsp_incoming_calls,
-        desc = '[I]ncoming [C]alls (cursor)'
+        func = '<cmd>Lspsaga incoming_calls<CR>',
+        desc = '[I]ncoming [C]alls'
       },
       {
         key = '<leader>lco',
-        func = t_builtin.lsp_outgoing_calls,
-        desc = '[O]utgoing [C]alls (cursor)'
+        func = '<cmd>Lspsaga outgoing_calls<CR>',
+        desc = '[O]utgoing [C]alls'
       },
       {
-        key = '<leader>l<space>',
+        key = '<leader>ld',
         func = function(t) t_builtin.diagnostics(t, 0) end,
-        desc = '[D]iagnostics (buffer)'
+        desc = '[D]iagnostics'
       },
       -- See `:help K` for why this keymap
       {
         key = 'K',
-        func = vim.lsp.buf.hover,
+        func = '<cmd>Lspsaga hover_doc<CR>',
         desc = 'Hover Documentation'
       },
       {
@@ -145,9 +136,6 @@ M.config = function()
       vim.lsp.buf.format()
     end, { desc = 'Format current buffer with LSP' })
   end
-
-  -- Setup neovim lua configuration
-  require('neodev').setup()
 
   -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
   local capabilities = vim.lsp.protocol.make_client_capabilities()

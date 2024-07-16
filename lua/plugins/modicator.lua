@@ -7,8 +7,6 @@ M.init = function()
     vim.o.termguicolors = true
 end
 
-M.config = function()
-    require('modicator').setup()
-end
+M.opts = { show_warnings = true }
 
 return M
