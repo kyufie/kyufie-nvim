@@ -1,6 +1,17 @@
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
+-- Highlight spaces and tabs at crucial locations
+vim.o.list = true
+vim.opt.listchars = {
+  -- Leading spaces
+  lead = '∙',
+  -- Trailing spaces
+  trail = '◦',
+  --Tabs
+  tab = '›-',
+}
+
 -- Set highlight on search
 vim.o.hlsearch = true
 
