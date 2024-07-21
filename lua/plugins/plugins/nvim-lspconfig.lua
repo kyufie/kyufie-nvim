@@ -10,7 +10,18 @@ local servers = {
       telemetry = { enable = false },
     },
   },
-  nixd = {},
+  -- TODO: Use a git repository
+  nixd = {
+    nixd = {
+      nixpkgs = 'import (builtins.getFlake "/home/kyufie/nixos").inputs.nixpkgs { }   ',
+    },
+
+    options = {
+      nixos = {
+        expr = '(builtins.getFlake "/home/kyufie/nixos").nixosConfigurations.thefoxflat.options'
+      }
+    }
+  },
 }
 
 M.dependencies = {
