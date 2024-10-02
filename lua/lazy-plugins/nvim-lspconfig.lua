@@ -3,7 +3,11 @@ local M = { 'neovim/nvim-lspconfig' }
 -- NOTE: Most mason LSPs aren't compatible with Termux
 local use_mason = false
 local servers = {
-  clangd = {},
+  clangd = {
+    cmd = {
+      "clangd --background-index --clang-tidy --completion-style=detailed --function-arg-placeholders --pch-storage=memory"
+    }
+  },
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = true },
