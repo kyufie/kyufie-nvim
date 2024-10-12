@@ -1,12 +1,14 @@
 -- [[ Basic Keymaps ]]
 
 local keymaps = {
+  -- Access to custom keymaps
   {
     { 'n', 'v' },
     '<Space>',
     '<Nop>',
     { silent = true }
   },
+
   -- Quickly clear highlight
   {
     'n',
@@ -14,6 +16,7 @@ local keymaps = {
     ':noh<cr>',
     { desc = 'Clear highlight' }
   },
+
   -- Tab related keymaps
   {
     'n',
@@ -39,6 +42,7 @@ local keymaps = {
     ':tabp<CR>',
     { noremap = true }
   },
+
   -- Window navigation keymap
   {
     'n',
@@ -46,20 +50,19 @@ local keymaps = {
     '<C-w>w',
     { noremap = true }
   },
-  -- Remap for dealing with word wrap
+
+  -- For dealing with word wrap
   {
     'n',
     'k',
     "v:count == 0 ? 'gk' : 'k'",
-    { expr = true,
-    silent = true }
+    { expr = true, silent = true }
   },
   {
     'n',
     'j',
     "v:count == 0 ? 'gj' : 'j'",
-    { expr = true,
-    silent = true }
+    { expr = true, silent = true }
   },
 }
 

@@ -6,7 +6,12 @@ M.opts = {
   border = 'rounded',
 
   finder = {
-    layout = 'float'
+    layout = 'float',
+    left_width = 0.2,
+    keys = {
+      quit = '<ESC>',
+      toggle_or_open = '<CR>'
+    }
   },
 
   diagnostic = {

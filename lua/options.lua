@@ -1,6 +1,3 @@
--- [[ Setting options ]]
--- See `:help vim.o`
-
 -- Highlight spaces and tabs at crucial locations
 vim.o.list = true
 vim.opt.listchars = {
@@ -12,8 +9,20 @@ vim.opt.listchars = {
   tab = '›-',
 }
 
+-- Indentation
+vim.o.shiftwidth = 4
+-- Use space instead of tab for indentation
+vim.o.expandtab = true
+-- Even though space indent would have the same width as tab indent,
+-- both should still be distinguishable from one another (see listchars)
+vim.o.tabstop = 4
+
 -- Set highlight on search
 vim.o.hlsearch = true
+
+-- Ask for confirmation when doing operations that would normally
+-- fail because of unsaved changes
+vim.o.confirm = true
 
 -- Enable line number
 vim.o.number = true
@@ -29,11 +38,6 @@ vim.o.clipboard = 'unnamedplus'
 -- Enable break indent (keep indentation for wrapped lines)
 vim.o.breakindent = true
 
--- Indentation
-vim.o.shiftwidth = 4
--- Use space instead of tab for indentation
-vim.o.expandtab = true
-
 -- Save undo history
 vim.o.undofile = true
 
@@ -48,6 +52,7 @@ vim.wo.signcolumn = 'yes'
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 
+-- Wide color range
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 

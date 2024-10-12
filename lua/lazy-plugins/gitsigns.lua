@@ -1,5 +1,5 @@
 
-    -- Adds git related signs to the gutter, as well as utilities for managing changes
+-- Adds git related signs to the gutter, as well as utilities for managing changes
 local M = { 'lewis6991/gitsigns.nvim' }
 
 M.opts = {
@@ -11,6 +11,7 @@ M.opts = {
     topdelete = { text = '‾' },
     changedelete = { text = '~' },
   },
+
   on_attach = function(bufnr)
     local gs = package.loaded.gitsigns
 
