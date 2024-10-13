@@ -48,8 +48,10 @@ vim.o.smartcase = true
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
 
--- Decrease update time
+-- The following options use millisecond as their unit
+-- How long should "doing nothing" occur until the swap file is updated
 vim.o.updatetime = 250
+-- Time to wait for a mapped sequence to complete
 vim.o.timeoutlen = 300
 
 -- Wide color range
