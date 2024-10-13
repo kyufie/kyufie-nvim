@@ -57,6 +57,11 @@ vim.o.timeoutlen = 300
 vim.o.termguicolors = true
 
 -- Exrc support
-vim.o.exrc = true;
+vim.o.exrc = true
+
+-- 'vsplit' puts the window to the right
+vim.o.splitright = true
+-- 'hsplit' puts the window to the bottom
+vim.o.splitbelow = true
 
 -- vim: ts=2 sts=2 sw=2 et
