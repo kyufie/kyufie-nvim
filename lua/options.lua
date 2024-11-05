@@ -66,4 +66,10 @@ vim.o.splitright = true
 -- 'hsplit' puts the window to the bottom
 vim.o.splitbelow = true
 
+-- Termux Android clipboard integration is slow
+-- Prefer not to use it
+if vim.fn.has('termux') == 1 then
+  vim.o.clipboard = ''
+end
+
 -- vim: ts=2 sts=2 sw=2 et
