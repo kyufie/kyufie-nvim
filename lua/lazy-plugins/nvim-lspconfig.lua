@@ -8,12 +8,14 @@ local servers = {
       "clangd --background-index --clang-tidy --completion-style=detailed --function-arg-placeholders --pch-storage=memory"
     }
   },
+
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = true },
       telemetry = { enable = false },
     },
   },
+
   -- TODO: Use a git repository
   nixd = {
     nixd = {
@@ -26,6 +28,8 @@ local servers = {
       }
     }
   },
+
+  rust_analyzer = {}
 }
 
 M.dependencies = {
