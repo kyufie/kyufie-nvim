@@ -64,6 +64,14 @@ local keymaps = {
     "v:count == 0 ? 'gj' : 'j'",
     { expr = true, silent = true }
   },
+
+  -- Quickly return from terminal mode
+  {
+    't',
+    '<C-;>',
+    '<C-\\><C-n>',
+    { noremap = true }
+  }
 }
 
 for _, keymap in ipairs(keymaps) do
