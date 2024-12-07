@@ -72,4 +72,8 @@ if vim.fn.has('termux') == 1 then
   vim.o.clipboard = ''
 end
 
+-- Vertical line on 79th character to prevent me from writing too long of a
+-- line
+vim.o.colorcolumn = "79"
+
 -- vim: ts=2 sts=2 sw=2 et
