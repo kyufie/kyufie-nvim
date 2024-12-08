@@ -76,4 +76,7 @@ end
 -- line
 vim.o.colorcolumn = "79"
 
+-- Change end-of-buffer filler character (~)
+vim.o.fillchars = "eob:∙"
+
 -- vim: ts=2 sts=2 sw=2 et
