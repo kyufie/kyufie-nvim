@@ -14,7 +14,7 @@ local keymaps = {
     'n',
     '<esc>',
     ':noh<cr>',
-    { desc = 'Clear highlight' }
+    { silent = true, desc = 'Clear highlight' }
   },
 
   -- Tab related keymaps
