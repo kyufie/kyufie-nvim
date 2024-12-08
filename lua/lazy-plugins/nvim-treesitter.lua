@@ -15,7 +15,8 @@ M.config = function()
       ensure_installed = {
         'c', 'cpp', 'go', 'lua', 'python', 'rust',
         'tsx', 'javascript', 'typescript', 'vimdoc',
-        'vim', 'bash', 'nix', 'markdown', 'markdown_inline'
+        'vim', 'bash', 'nix', 'markdown', 'markdown_inline',
+        'comment'
       },
 
       modules = {},
