@@ -16,6 +16,10 @@ M.opts = {
 
   diagnostic = {
     border_follow = true
+  },
+
+  symbol_in_winbar = {
+    enable = false
   }
 }
 
