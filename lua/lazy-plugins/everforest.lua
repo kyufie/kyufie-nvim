@@ -4,6 +4,7 @@ M.priority = 1000
 M.lazy = false
 
 M.config = function()
+---@diagnostic disable-next-line: missing-fields
   require("everforest").setup({
     ---Controls the "hardness" of the background. Options are "soft", "medium" or "hard".
     ---Default is "medium".
