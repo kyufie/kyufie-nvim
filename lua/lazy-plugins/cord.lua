@@ -8,10 +8,10 @@ M.event = 'VeryLazy'
 
 M.opts = {
   usercmds = true,                              -- Enable user commands
-  log_level = 'error',                            -- One of 'trace', 'debug', 'info', 'warn', 'error', 'off'
+  log_level = 'error',                          -- One of 'trace', 'debug', 'info', 'warn', 'error', 'off'
   timer = {
     interval = 1500,                            -- Interval between presence updates in milliseconds (min 500)
-    reset_on_idle = false,                      -- Reset start timestamp on idle
+    reset_on_idle = true,                       -- Reset start timestamp on idle
     reset_on_change = false,                    -- Reset start timestamp on presence change
   },
   editor = {
