@@ -1,7 +1,5 @@
 local M = { 'neovim/nvim-lspconfig' }
 
--- NOTE: Most mason LSPs aren't compatible with Termux
-local use_mason = false
 local servers = {
   clangd = {
     cmd = {
@@ -39,11 +37,6 @@ M.dependencies = {
   'nvim-telescope/telescope.nvim',
   'nvimdev/lspsaga.nvim'
 }
-
-if use_mason then
-  table.insert(M.dependencies, 'williamboman/mason.nvim')
-  table.insert(M.dependencies, 'williamboman/mason-lspconfig.nvim')
-end
 
 M.config = function()
   -- [[ Configure LSP ]]
@@ -160,38 +153,13 @@ M.config = function()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-  if use_mason then
-    -- mason-lspconfig requires that these setup functions are called in this order
-    -- before setting up the servers.
-    require('mason').setup()
-    require('mason-lspconfig').setup()
-
-    -- Ensure the servers above are installed
-    local mason_lspconfig = require 'mason-lspconfig'
-
-    mason_lspconfig.setup {
-      ensure_installed = vim.tbl_keys(servers),
+  for server_name, opts in pairs(servers) do
+    require('lspconfig')[server_name].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = opts,
+      filetypes = (opts or {}).filetypes,
     }
-
-    mason_lspconfig.setup_handlers {
-      function(server_name)
-        require('lspconfig')[server_name].setup {
-          capabilities = capabilities,
-          on_attach = on_attach,
-          settings = servers[server_name],
-          filetypes = (servers[server_name] or {}).filetypes,
-        }
-      end,
-    }
-  else
-    for server_name, opts in pairs(servers) do
-      require('lspconfig')[server_name].setup {
-        capabilities = capabilities,
-        on_attach = on_attach,
-        settings = opts,
-        filetypes = (opts or {}).filetypes,
-      }
-    end
   end
 end
 
