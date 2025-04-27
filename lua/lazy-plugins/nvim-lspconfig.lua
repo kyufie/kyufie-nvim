@@ -9,27 +9,31 @@ local servers = {
       '--completion-style=detailed',
       '--function-arg-placeholders',
       '--pch-storage=memory'
-    }
+    },
   },
 
   lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = true },
-      telemetry = { enable = false },
+    settings = {
+      Lua = {
+        workspace = { checkThirdParty = true },
+        telemetry = { enable = false },
+      }
     },
   },
 
   -- TODO: Use a git repository
   nixd = {
-    nixd = {
-      nixpkgs = 'import (builtins.getFlake "/home/kyufie/nixos").inputs.nixpkgs { }   ',
-    },
+    settings = {
+      nixd = {
+        nixpkgs = 'import (builtins.getFlake "/home/kyufie/nixos").inputs.nixpkgs { }   ',
+      },
 
-    options = {
-      nixos = {
-        expr = '(builtins.getFlake "/home/kyufie/nixos").nixosConfigurations.thefoxflat.options'
+      options = {
+        nixos = {
+          expr = '(builtins.getFlake "/home/kyufie/nixos").nixosConfigurations.thefoxflat.options'
+        }
       }
-    }
+    },
   },
 
   rust_analyzer = {}
@@ -51,8 +55,8 @@ M.config = function()
   })
 
   for server_name, opts in pairs(servers) do
-    vim.lsp.enable(server_name)
     vim.lsp.config(server_name, opts)
+    vim.lsp.enable(server_name)
   end
 end
 
