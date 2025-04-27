@@ -9,7 +9,6 @@ M.opts = {
   explorer = {
     replace_netrw = true
   },
-  scroll = {},
   quickfile = {},
   terminal = {}
 }
