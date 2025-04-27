@@ -22,22 +22,22 @@ M.dependencies = {
 M.keys = {
   {
     '<leader>?',
-    require('telescope.builtin').oldfiles,
+    function() require('telescope.builtin').oldfiles() end,
     desc = '[?] Find recently opened files'
   },
   {
     '<leader><space>',
-    require('telescope.builtin').buffers,
+    function() require('telescope.builtin').buffers() end,
     desc = '[ ] Find existing buffers'
   },
   {
     '<leader>ls',
-    require('telescope.builtin').lsp_document_symbols,
+    function() require('telescope.builtin').lsp_document_symbols() end,
     desc = '[S]ymbols (local)'
   },
   {
     '<leader>lS',
-    require('telescope.builtin').lsp_dynamic_workspace_symbols,
+    function() require('telescope.builtin').lsp_dynamic_workspace_symbols() end,
     desc = '[S]ymbols (workspace)'
   },
   {
@@ -47,47 +47,42 @@ M.keys = {
   },
   {
     '<leader>ss',
-    require('telescope.builtin').builtin,
+    function() require('telescope.builtin').builtin() end,
     desc = '[S]earch [S]elect Telescope'
   },
   {
     '<leader>gf',
-    require('telescope.builtin').git_files,
+    function() require('telescope.builtin').git_files() end,
     desc = 'Search [G]it [F]iles'
   },
   {
     '<leader>sf',
-    require('telescope.builtin').find_files,
+    function() require('telescope.builtin').find_files() end,
     desc = '[S]earch [F]iles'
   },
   {
     '<leader>sh',
-    require('telescope.builtin').help_tags,
+    function() require('telescope.builtin').help_tags() end,
     desc = '[S]earch [H]elp'
   },
   {
     '<leader>sw',
-    require('telescope.builtin').grep_string,
+    function() require('telescope.builtin').grep_string() end,
     desc = '[S]earch current [W]ord'
   },
   {
     '<leader>sg',
-    require('telescope.builtin').live_grep,
+    function() require('telescope.builtin').live_grep() end,
     desc = '[S]earch by [G]rep'
   },
   {
-    '<leader>sG',
-    ':LiveGrepGitRoot<cr>',
-    desc = '[S]earch by [G]rep on Git Root'
-  },
-  {
     '<leader>sd',
-    require('telescope.builtin').diagnostics,
+    function() require('telescope.builtin').diagnostics() end,
     desc = '[S]earch [D]iagnostics'
   },
   {
     '<leader>sr',
-    require('telescope.builtin').resume,
+    function() require('telescope.builtin').resume() end,
     desc = '[S]earch [R]esume'
   },
 }
