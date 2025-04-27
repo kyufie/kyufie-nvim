@@ -50,26 +50,6 @@ M.opts = {
     vcs = 'Committing changes in {}',           -- Text to display when using Git or Git-related plugin (Empty string to disable)
     workspace = 'In {}',                        -- Text to display when in a workspace (Empty string to disable)
   },
-  buttons = {
-    {
-      label = 'View Repository',                -- Text displayed on the button
-      url = 'git',                              -- URL where the button leads to ('git' = automatically fetch Git repository URL)
-    },
-    -- {
-    --   label = 'View Plugin',
-    --   url = 'https://github.com/vyfor/cord.nvim',
-    -- }
-  },
-  assets = nil,                                 -- Custom file icons, see the wiki*
-  -- assets = {
-  --   lazy = {                                 -- Vim filetype or file name or file extension = table or string
-  --     name = 'Lazy',                         -- Optional override for the icon name, redundant for language types
-  --     icon = 'https://example.com/lazy.png', -- Rich Presence asset name or URL
-  --     tooltip = 'lazy.nvim',                 -- Text to display when hovering over the icon
-  --     type = 'plugin_manager',               -- One of 'language', 'file_browser', 'plugin_manager', 'lsp_manager', 'vcs' or respective ordinals; defaults to 'language'
-  --   },
-  --   ['Cargo.toml'] = 'crates',
-  -- },
 }
 
 return M
