@@ -36,7 +36,9 @@ local servers = {
     },
   },
 
-  rust_analyzer = {}
+  rust_analyzer = {},
+
+  ts_ls = {}
 }
 
 M.dependencies = {
