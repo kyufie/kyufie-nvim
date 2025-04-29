@@ -16,7 +16,7 @@ M.config = function()
         'c', 'cpp', 'go', 'lua', 'python', 'rust',
         'tsx', 'javascript', 'typescript', 'vimdoc',
         'vim', 'bash', 'nix', 'markdown', 'markdown_inline',
-        'comment'
+        'comment', 'scss'
       },
 
       modules = {},
