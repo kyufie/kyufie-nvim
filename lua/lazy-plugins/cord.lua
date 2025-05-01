@@ -7,49 +7,100 @@ M.enabled = vim.fn.has('termux') ~= 1
 M.event = 'VeryLazy'
 
 M.opts = {
-  usercmds = true,                              -- Enable user commands
-  log_level = 'error',                          -- One of 'trace', 'debug', 'info', 'warn', 'error', 'off'
-  timer = {
-    interval = 1500,                            -- Interval between presence updates in milliseconds (min 500)
-    reset_on_idle = true,                       -- Reset start timestamp on idle
-    reset_on_change = false,                    -- Reset start timestamp on presence change
-  },
+  enabled = true,
+  log_level = vim.log.levels.OFF,
   editor = {
-    image = nil,                                -- Image ID or URL in case a custom client id is provided
-    client = 'neovim',                          -- vim, neovim, lunarvim, nvchad, astronvim or your application's client id
-    tooltip = 'The Superior Text Editor',       -- Text to display when hovering over the editor's image
+    client = 'neovim',
+    tooltip = 'A text editor',
+    icon = nil,
   },
   display = {
-    show_time = true,                           -- Display start timestamp
-    show_repository = false,                    -- Display 'View repository' button linked to repository url, if any
-    show_cursor_position = false,               -- Display line and column number of cursor's position
-    swap_fields = false,                        -- If enabled, workspace is displayed first
-    swap_icons = false,                         -- If enabled, editor is displayed on the main image
-    workspace_blacklist = {},                   -- List of workspace names that will hide rich presence
+    theme = 'default',
+    flavor = 'dark',
+    swap_fields = false,
+    swap_icons = false,
   },
-  lsp = {
-    show_problem_count = false,                 -- Display number of diagnostics problems
-    severity = 1,                               -- 1 = Error, 2 = Warning, 3 = Info, 4 = Hint
-    scope = 'workspace',                        -- buffer or workspace
+  timestamp = {
+    enabled = true,
+    reset_on_idle = false,
+    reset_on_change = false,
   },
   idle = {
-    enable = true,                              -- Enable idle status
-    show_status = true,                         -- Display idle status, disable to hide the rich presence on idle
-    timeout = 300000,                           -- Timeout in milliseconds after which the idle status is set, 0 to display immediately
-    disable_on_focus = false,                   -- Do not display idle status when neovim is focused
-    text = 'Idle',                              -- Text to display when idle
-    tooltip = '💤',                             -- Text to display when hovering over the idle image
-    icon = nil,                                 -- Replace the default idle icon; either an asset ID or a URL
+    enabled = true,
+    timeout = 300000,
+    show_status = true,
+    ignore_focus = true,
+    unidle_on_focus = true,
+    smart_idle = true,
+    details = 'Idling',
+    state = nil,
+    tooltip = '💤',
+    icon = nil,
   },
   text = {
-    viewing = 'Viewing {}',                     -- Text to display when viewing a readonly file
-    editing = 'Editing {}',                     -- Text to display when editing a file
-    file_browser = 'Browsing files in {}',      -- Text to display when browsing files (Empty string to disable)
-    plugin_manager = 'Managing plugins in {}',  -- Text to display when managing plugins (Empty string to disable)
-    lsp_manager = 'Configuring LSP in {}',      -- Text to display when managing LSP servers (Empty string to disable)
-    vcs = 'Committing changes in {}',           -- Text to display when using Git or Git-related plugin (Empty string to disable)
-    workspace = 'In {}',                        -- Text to display when in a workspace (Empty string to disable)
+    default = nil,
+    workspace = function(opts) return 'In ' .. opts.workspace end,
+    viewing = function(opts) return 'Viewing ' .. opts.filename end,
+    editing = function(opts) return 'Editing ' .. opts.filename end,
+    file_browser = function(opts) return 'Browsing files in ' .. opts.name end,
+    plugin_manager = function(opts) return 'Managing plugins in ' .. opts.name end,
+    lsp = function(opts) return 'Configuring LSP in ' .. opts.name end,
+    docs = function(opts) return 'Reading ' .. opts.name end,
+    vcs = function(opts) return 'Committing changes in ' .. opts.name end,
+    notes = function(opts) return 'Taking notes in ' .. opts.name end,
+    debug = function(opts) return 'Debugging in ' .. opts.name end,
+    test = function(opts) return 'Testing in ' .. opts.name end,
+    diagnostics = function(opts) return 'Fixing problems in ' .. opts.name end,
+    games = function(opts) return 'Playing ' .. opts.name end,
+    terminal = function(opts) return 'Running commands in ' .. opts.name end,
+    dashboard = 'Home',
+  }, 
+  buttons = nil,
+  -- buttons = {
+  --   {
+  --     label = 'View Repository',
+  --     url = function(opts) return opts.repo_url end,
+  --   },
+  -- },
+  assets = nil,
+  variables = nil,
+  hooks = {
+    ready = nil,
+    shutdown = nil,
+    pre_activity = nil,
+    post_activity = nil,
+    idle_enter = nil,
+    idle_leave = nil,
+    workspace_change = nil,
+  },
+  plugins = nil,
+  advanced = {
+    plugin = {
+      autocmds = true,
+      cursor_update = 'on_hold',
+      match_in_mappings = true,
+    },
+    server = {
+      update = 'fetch',
+      pipe_path = nil,
+      executable_path = nil,
+      timeout = 300000,
+    },
+    discord = {
+      reconnect = {
+        enabled = false,
+        interval = 5000,
+        initial = true,
+      },
+    },
+    workspace = {
+      root_markers = {
+        '.git',
+        '.hg',
+        '.svn',
+      },
+      limit_to_cwd = false,
+    },
   },
 }
-
 return M
